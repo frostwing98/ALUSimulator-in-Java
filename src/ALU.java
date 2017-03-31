@@ -8,7 +8,7 @@ public class ALU {
 	
 	
 	public static void main(String args[]){
-		String number="-11";
+		String number="-102";
 		int length=8;
 		integerRepresentation(number,length);
 	}
@@ -222,18 +222,21 @@ public class ALU {
 		char[] result=new char[length];
 		char carry='0';
 		char carry1='0';
-		
-		carry1=calcCarry(input[input.length-1], '1', carry1);
-		result[length-1]=XOR(input[input.length-1], '1');
+		System.out.println(input);
+		carry1=calcCarry(input[input.length-2], '1', carry1);
+		result[length-1]=XOR(input[input.length-2], '1');
 		carry=carry1;
-
-		for(int i=length-2;i>0;i--){
+		System.out.print(carry);
+		System.out.println(result[length-1]);
+		for(int i=length-1;i>0;i--){
 			//result[i]=XOR(input[i-1], carry);
 			
-			carry=calcCarry(input[i], carry, carry1);
-			result[i]=XOR(input[i], carry);
+			carry1=calcCarry(input[i-1], carry, carry1);
+			result[i]=XOR(input[i-1], carry);
 			carry=carry1;
-
+			System.out.println(input[i-1]);
+			System.out.print(carry);
+			System.out.println(result[i-1]);
 		}
 		
 		result[0]=XOR('0', carry);
